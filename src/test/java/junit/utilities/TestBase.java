@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class TestBase {
-    protected  WebDriver driver;
+    protected WebDriver driver;
 
         @Before
     public  void  setUp(){

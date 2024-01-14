@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DropdownMenu extends TestBase {
     @Test
-    public void test1() throws InterruptedException {
+    public void test01() throws InterruptedException {
         // visit https://testotomasyonu.com/form
         // choose as a birthaday with index 5
         // choose as a birthMonth with value "april"
@@ -48,9 +48,55 @@ public class DropdownMenu extends TestBase {
 
         Assert.assertEquals(13, selectMonthOptionElements.size());
 
+    }
+
+    @Test
+    public void test02() throws InterruptedException {
+        // visit http://zero.webappsecurity.com/
+        String url = "http://zero.webappsecurity.com/";
+        driver.get(url);
+
+        //click sign in button
+        driver.findElement(By.id("signin_button")).click();
+
+        //Send "username" on loginbox
+        driver.findElement(By.id("user_login")).sendKeys("username");
+
+        //Send "password" on  passwordbox
+        driver.findElement(By.id("user_password")).sendKeys("password");
+
+        //Click the "Keep me signed in" box
+
+        driver.findElement(By.id("user_remember_me")).click();
+
+        // click sign in, then back turn
+        driver.findElement(By.xpath("//input[@value='Sign in']"));
+        driver.navigate().back();
+
+        // Visit "Pay bils" in onlineBanking menu
+        driver.findElement(By.xpath("//strong[text()='Online Banking']")).click();
+
+        driver.findElement(By.id("pay_bills_link")).click();
+
+
+        // Click "purchase Forreign corrency"
+        driver.findElement(By.partialLinkText("Purchase Foreign Currency")).click();
+
+
+        // Select "Eurozone" in Currency dropdownmenu
+        // Send a number on "amount" box
+        // Check "Usdollar" is unselected
+        // Select "selected Currency" button
+        // Click "calculate costs" button then click "purchase" button
+        // Check "Foreing currency cash was successfully purchased" text is displayed
+
+
 
 
 
 
     }
+
+
+
 }

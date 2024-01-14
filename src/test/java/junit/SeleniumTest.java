@@ -44,11 +44,11 @@ public class SeleniumTest {
 
         driver.quit();
 
-    }public  static  void sendKeys(WebElement element, String value){
+    }public  void sendKeys(WebElement element, String value){
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(value);
 
-    }public  static  void click(WebElement element){
+    }public  void click(WebElement element){
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(element));
         element.submit();
     }
