@@ -46,6 +46,7 @@ public class DropdownMenu extends TestBase {
             System.out.println(each.getText());
         }
 
+
         Assert.assertEquals(13, selectMonthOptionElements.size());
 
     }
@@ -80,7 +81,7 @@ public class DropdownMenu extends TestBase {
 
 
         // Click "purchase Forreign corrency"
-        driver.findElement(By.partialLinkText("Purchase Foreign Currency")).click();
+        driver.findElement(By.partialLinkText("//* [text()='Purchase Foreign Currency']")).click();
 
 
         // Select "Eurozone" in Currency dropdownmenu
@@ -89,10 +90,6 @@ public class DropdownMenu extends TestBase {
         // Select "selected Currency" button
         // Click "calculate costs" button then click "purchase" button
         // Check "Foreing currency cash was successfully purchased" text is displayed
-
-
-
-
 
 
     }

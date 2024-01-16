@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
+
+import java.util.Set;
 
 public class UnControlWindow extends TestBase {
 
@@ -35,22 +38,37 @@ public class UnControlWindow extends TestBase {
             1- ya kontrollu yeni bir tab/window acarak
             2- kontrolsuz acilan tab/window'un Window handle degerini kullanarak
 
-            Burada Java'dan yaralanarak mini bir bulmaca cozmeliyiz
          */
 
         //● Electronics sayfasinin acildigini test edin
+            String firstPageWHD= driver.getWindowHandle();
+        Set<String> windowHandles= driver.getWindowHandles();
+        String electronicsPageWindowHandle="";
+
+        for (String each: windowHandles){
+            if (!each.equals(firstPageWHD)){
+                electronicsPageWindowHandle= each;
+            }
+        }
+        driver.switchTo().window(electronicsPageWindowHandle);
+        Assert.assertTrue(driver.getTitle().contains("Electronic"));
 
 
         //● Bulunan urun sayisinin 16 olduğunu test edin
+    WebElement resultTextElementi = driver.findElement(By.className("product-count-text"));
+    String resultText= resultTextElementi.getText().replaceAll("\\D","");
+    int totalResult = Integer.parseInt(resultText);
+
+    Assert.assertEquals(16,totalResult);
 
 
 
         //● Ilk actiginiz addremove sayfasina donun
-
+        driver.switchTo().window(firstPageWHD);
 
 
         //● Url’in addremove icerdigini test edin
-
+        Assert.assertTrue(driver.getCurrentUrl().contains("addremove"));
 
     }
 }
