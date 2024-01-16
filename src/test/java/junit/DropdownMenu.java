@@ -52,44 +52,41 @@ public class DropdownMenu extends TestBase {
     }
 
     @Test
-    public void test02() throws InterruptedException {
-        // visit http://zero.webappsecurity.com/
-        String url = "http://zero.webappsecurity.com/";
-        driver.get(url);
+    public void test02()  {
 
-        //click sign in button
-        driver.findElement(By.id("signin_button")).click();
+        // Go to website "https://www.amazon.com.tr"
+        driver.get("https://www.amazon.com.tr");
 
-        //Send "username" on loginbox
-        driver.findElement(By.id("user_login")).sendKeys("username");
+        // 1. Locate Dropdown menu
+        WebElement dropdownElement = driver.findElement(By.xpath("//select[@aria-describedby='searchDropdownDescription']"));
 
-        //Send "password" on  passwordbox
-        driver.findElement(By.id("user_password")).sendKeys("password");
+        // 2.new select object
+        Select select = new Select(dropdownElement);
 
-        //Click the "Keep me signed in" box
+        // option 1
+        select.selectByIndex(2);
+        System.out.println("Element  index of 3: " + select.getFirstSelectedOption().getText()); // Baby
 
-        driver.findElement(By.id("user_remember_me")).click();
-
-        // click sign in, then back turn
-        driver.findElement(By.xpath("//input[@value='Sign in']"));
-        driver.navigate().back();
-
-        // Visit "Pay bils" in onlineBanking menu
-        driver.findElement(By.xpath("//strong[text()='Online Banking']")).click();
-
-        driver.findElement(By.id("pay_bills_link")).click();
+        // option 2
+        select.selectByValue("search-alias=home");
+        System.out.println("Value : " + select.getFirstSelectedOption().getText()); //  Home
 
 
-        // Click "purchase Forreign corrency"
-        driver.findElement(By.partialLinkText("//* [text()='Purchase Foreign Currency']")).click();
+        // option 3
+        select.selectByVisibleText("Gıda ve İçecek");
+        System.out.println("VisibleText : " + select.getFirstSelectedOption().getText());//Gida ve icecek
 
 
-        // Select "Eurozone" in Currency dropdownmenu
-        // Send a number on "amount" box
-        // Check "Usdollar" is unselected
-        // Select "selected Currency" button
-        // Click "calculate costs" button then click "purchase" button
-        // Check "Foreing currency cash was successfully purchased" text is displayed
+        // All of option
+        List<WebElement> optionList = select.getOptions();
+        int number = 0;
+        System.out.println("\nAll List\n");
+
+        for(WebElement w : optionList){
+            System.out.println(number+" : " + w.getText());
+            number++;
+        }
+
 
 
     }

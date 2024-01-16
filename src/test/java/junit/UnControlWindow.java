@@ -71,4 +71,54 @@ public class UnControlWindow extends TestBase {
         Assert.assertTrue(driver.getCurrentUrl().contains("addremove"));
 
     }
+    @Test
+    public void test02(){
+
+
+        //  https://the-internet.herokuapp.com/windows URL gidin
+        driver.get("https://the-internet.herokuapp.com/windows");
+        String firstPageWHD= driver.getWindowHandle();
+
+        //  Click Here butonuna basın.
+        driver.findElement(By.partialLinkText("Click Here")).click();
+
+        // Acilan yeni pencerenin sayfa başlığının (title) “New Window” oldugunu dogrulayin.
+
+        Set<String> windowHandleSet= driver.getWindowHandles();
+        String newPageHandle="";
+        for (String each: windowHandleSet){
+            if (!each.equals(firstPageWHD)){
+                newPageHandle=each;
+            }
+        }
+        driver.switchTo().window(newPageHandle);
+
+        String expectedTitle= "New Window";
+        String actualTitle = driver.getTitle();
+        Assert.assertEquals(expectedTitle,actualTitle);
+
+
+        //  Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.
+        driver.switchTo().window(firstPageWHD);
+
+
+        // Elemental Selenium butonuna tıklayın
+        driver.findElement(By.partialLinkText("Elemental Selenium")).click();
+
+        //  Acilan yeni pencerenin sayfa başlığının (title) “Elemental Selenium” icerdigini dogrulayin.
+        Set<String> windowHandlSet= driver.getWindowHandles();
+        String thirdWHD ="";
+        for (String each: windowHandlSet){
+            if (!each.equals(firstPageWHD)&& !each.equals(newPageHandle)){
+                thirdWHD= each;
+            }
+                    }
+        driver.switchTo().window(thirdWHD);
+        String expextedTitlee = "Elemental Selenium";
+        String actualTitlee = driver.getTitle();
+        Assert.assertTrue(actualTitlee.contains(expextedTitlee));
+        // Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.,
+
+
+    }
 }
