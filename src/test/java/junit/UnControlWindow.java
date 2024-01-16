@@ -1,5 +1,6 @@
 package junit;
 
+import junit.utilities.ReusableMethods;
 import junit.utilities.TestBase;
 import org.junit.Assert;
 import org.junit.Test;
@@ -118,6 +119,104 @@ public class UnControlWindow extends TestBase {
         String actualTitlee = driver.getTitle();
         Assert.assertTrue(actualTitlee.contains(expextedTitlee));
         // Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.,
+
+
+    }
+    @Test
+    public void test03(){
+
+        //  https://the-internet.herokuapp.com/windows URL gidin
+        driver.get("https://the-internet.herokuapp.com/windows");
+
+        //  Click Here butonuna basın.
+        driver.findElement(By.partialLinkText("Click Here")).click();
+
+        // Acilan yeni pencerenin sayfa başlığının (title) “New Window” oldugunu dogrulayin.
+        driver= ReusableMethods.getPageWithTitle(driver, "New Window" );
+
+        String expectedTitle= "New Window";
+        String actualTitle = driver.getTitle();
+
+        Assert.assertEquals(expectedTitle, actualTitle);
+
+        //  Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.
+        driver= ReusableMethods.getPageWithTitle(driver, "The Internet");
+
+        String expectedInternetTitle = "The Internet";
+        String actualInternetTitle= driver.getTitle();
+
+        Assert.assertEquals(expectedTitle,actualTitle);
+
+        // Elemental Selenium butonuna tıklayın
+
+        driver.findElement(By.partialLinkText("Elemental Selenium")).click();
+
+
+        //  Acilan yeni pencerenin sayfa başlığının (title) “Elemental Selenium” icerdigini dogrulayin.
+        driver= ReusableMethods.getPageWithTitle(driver, "Elemental Selenium | Elemental Selenium");
+
+        String expectedElementalTitle = "Elemental Selenium | Elemental Selenium";
+        String actualElemantaltitle= driver.getTitle();
+        Assert.assertEquals(expectedElementalTitle,actualElemantaltitle);
+
+
+        // Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.,
+        driver= ReusableMethods.getPageWithTitle(driver, "The Internet" );
+
+        String expectedsecondInternetTitle ="The Internet";
+        String actualsecondInternetTitle = driver.getTitle();
+
+        Assert.assertEquals(expectedsecondInternetTitle,actualsecondInternetTitle);
+
+
+    }
+    @Test
+    public void test04(){
+
+        //  https://the-internet.herokuapp.com/windows URL gidin
+        driver.get("https://the-internet.herokuapp.com/windows");
+        String mainPageWHD= driver.getWindowHandle();
+
+        //  Click Here butonuna basın.
+        driver.findElement(By.partialLinkText("Click Here")).click();
+
+        // Acilan yeni pencerenin sayfa başlığının (title) “New Window” oldugunu dogrulayin.
+       String windowPageWHD= ReusableMethods.getNewWindowHandle(driver, mainPageWHD);
+       driver.switchTo().window(windowPageWHD);
+
+        String expectedTitle= "New Window";
+        String actualTitle = driver.getTitle();
+
+        Assert.assertEquals(expectedTitle, actualTitle);
+
+        //  Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.
+        driver.switchTo().window(mainPageWHD);
+
+        String expectedInternetTitle = "The Internet";
+        String actualInternetTitle= driver.getTitle();
+
+        Assert.assertEquals(expectedTitle,actualTitle);
+
+        // Elemental Selenium butonuna tıklayın
+
+        driver.findElement(By.partialLinkText("Elemental Selenium")).click();
+
+
+        //  Acilan yeni pencerenin sayfa başlığının (title) “Elemental Selenium” icerdigini dogrulayin.
+        driver= ReusableMethods.getPageWithTitle(driver, "Elemental Selenium | Elemental Selenium");
+
+        String expectedElementalTitle = "Elemental Selenium | Elemental Selenium";
+        String actualElemantaltitle= driver.getTitle();
+        Assert.assertEquals(expectedElementalTitle,actualElemantaltitle);
+
+
+        // Bir önceki pencereye geri döndükten sonra sayfa başlığının “The Internet” olduğunu doğrulayın.,
+        driver= ReusableMethods.getPageWithTitle(driver, "The Internet" );
+
+        String expectedsecondInternetTitle ="The Internet";
+        String actualsecondInternetTitle = driver.getTitle();
+
+        Assert.assertEquals(expectedsecondInternetTitle,actualsecondInternetTitle);
 
 
     }
