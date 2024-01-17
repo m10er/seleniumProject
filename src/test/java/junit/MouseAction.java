@@ -5,6 +5,7 @@ import junit.utilities.TestBase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -75,6 +76,96 @@ public class MouseAction extends TestBase {
 
             Assert.assertEquals(expectedTagElement,actualTagElement);
         }
+        @Test
+        public void test03(){
 
+            // amazon ana sayfa ya gidin
+            driver.get("https://www.amazon.com.tr");
+
+                // sag ustte :Merhaba giris yapin elementinin uzerinde mouse'u bekletin
+            WebElement signInElement = driver.findElement(By.xpath("//*[@data-csa-c-slot-id='nav-link-accountList']"));
+
+            Actions actions = new Actions(driver);
+            actions.moveToElement(signInElement);
+
+            // acilan menu de Create a list linkine tiklayin
+            WebElement listElement = driver.findElement(By.xpath("(//*[@class='nav-text'])[1]"));
+
+            actions.click(listElement).perform();
+
+
+            // ve Create a list sayfasini acildigini test edin
+            driver= ReusableMethods.getPageWithTitle(driver,"Liste");
+
+            String expextedTitle = "Liste";
+            String actalTitle = driver.getTitle();
+
+            Assert.assertEquals(expextedTitle,actalTitle);
+
+        }
+        @Test
+        public void test04() throws InterruptedException {
+
+
+            // https://html.com/tags/iframe/ sayfasina gidelim
+            String url = "https://html.com/tags/iframe/";
+            driver.get(url);
+            Thread.sleep(1000);
+            // video’yu gorecek kadar asagi inin
+            Actions actions = new Actions(driver);
+            actions.scrollByAmount(0,1000).perform();
+            Thread.sleep(1000);
+            // videoyu izlemek icin Play tusuna basin
+
+
+           WebElement iframeElement= driver.findElement(By.xpath("//iframe[1]"));
+          driver.switchTo().frame(iframeElement);
+           Thread.sleep(3000);
+            driver.findElement(By.xpath("//*[@id='player']")).click();
+
+            //driver.switchTo().frame(playelement);
+          //  playelement.click();
+
+            // videoyu calistirdiginizi test edin
+            WebElement youtubeTextElement= driver.findElement(By.className("ytp-impression-link-text"));
+            Assert.assertFalse(youtubeTextElement.isDisplayed());
+
+            // video durdurun
+            driver.findElement(By.xpath("//*[@controlslist='nodownload']")).click();
+
+        }
+    @Test
+    public void test05() throws InterruptedException {
+
+        // Go to https://demoqa.com/buttons
+        driver.get("https://demoqa.com/buttons ");
+
+        // Double click to doubleclick button
+
+        WebElement doubleClickElement= driver.findElement(By.id("doubleClickBtn"));
+        Thread.sleep(2000);
+
+        Actions actions = new Actions(driver);
+
+        actions.doubleClick(doubleClickElement).perform();
+        Thread.sleep(2000);
+
+        // Check the text "You have done a double click" is displayed?
+
+        WebElement  doubleClickMessage= driver.findElement(By.id("doubleClickMessage"));
+
+        Assert.assertTrue(doubleClickMessage.isDisplayed());
+
+        // Right click to rightclickbutton
+        WebElement rightclickElement= driver.findElement(By.id("rightClickBtn"));
+        actions.contextClick(rightclickElement).perform();
+
+
+        //Check the text "" is displayed
+
+        WebElement rightClickText = driver.findElement(By.id("rightClickMessage"));
+        Assert.assertTrue(rightClickText.isDisplayed());
+
+    }
 
 }

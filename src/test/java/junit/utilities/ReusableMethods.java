@@ -27,5 +27,14 @@ public class ReusableMethods {
         }
         return driver;
     }
+    public static void getpagewithtitle(WebDriver driver, String title){
+        Set<String> windowhanles= driver.getWindowHandles();
+        for (String eachwdh: windowhanles){
+            driver.switchTo().window(eachwdh);
+            if (driver.getTitle().equals(title)){
+                break;
+            }
+        }
+    }
 
 }

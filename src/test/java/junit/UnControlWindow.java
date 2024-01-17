@@ -229,7 +229,8 @@ public class UnControlWindow extends TestBase {
         driver.findElement(By.xpath("//*[.='Electronics Products']")).click();
 
         //● Electronics sayfasinin acildigini test edin
-        driver=ReusableMethods.getPageWithTitle(driver,"Test Otomasyonu - Electronics");
+       // driver=ReusableMethods.getPageWithTitle(driver,"Test Otomasyonu - Electronics");
+        ReusableMethods.getpagewithtitle(driver, "Test Otomasyonu - Electronics");
         Assert.assertEquals("Test Otomasyonu - Electronics", driver.getTitle());
 
 

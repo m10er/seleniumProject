@@ -34,4 +34,10 @@ public class MovetoElement extends TestBase {
 
         Assert.assertEquals(expectedTexElement,actualTextElemenet);
     }
+    @Test
+    public void test02(){
+
+    }
+
+
 }
