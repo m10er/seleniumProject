@@ -11,14 +11,14 @@ import java.time.Duration;
 public class TestBase {
     protected WebDriver driver;
 
-        @Before
+    @Before
     public  void  setUp(){
             WebDriverManager.chromedriver().setup();
             driver= new ChromeDriver();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
             driver.manage().window().maximize();
         }
-        @After
+    @After
     public void tearDown(){
             driver.quit();
         }

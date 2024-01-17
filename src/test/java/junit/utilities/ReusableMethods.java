@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 public class ReusableMethods {
-    public static void wait(int second) throws InterruptedException {
-        Thread.sleep(5);
-    }
 
     public static List<String> stringList(List<WebElement> webElementList) {
         List<String> stringList = new ArrayList<>();
@@ -31,14 +28,4 @@ public class ReusableMethods {
         return driver;
     }
 
-    public static String getNewWindowHandle(WebDriver driver, String... handles) {
-        ArrayList<String> handleArr = new ArrayList<>(driver.getWindowHandles());
-        String newHandle = "";
-        for (int i = 0; i < handles.length; i++) {
-            if (handleArr.contains(handles[i])) {
-                newHandle = handles[i];
-            }
-        }
-        return newHandle;
-    }
 }
