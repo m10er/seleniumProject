@@ -9,6 +9,13 @@ import java.util.List;
 import java.util.Set;
 
 public class ReusableMethods {
+    public static void waitfor(int second){
+        try {
+            Thread.sleep(second*1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static List<String> stringList(List<WebElement> webElementList) {
         List<String> stringList = new ArrayList<>();

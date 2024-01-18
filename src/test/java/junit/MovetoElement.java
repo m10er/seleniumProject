@@ -37,6 +37,20 @@ public class MovetoElement extends TestBase {
     @Test
     public void test02(){
 
+
+            String url = "https://selenium08.blogspot.com/2020/01/click-and-hold.html";
+        driver.get(url);
+
+        // Locate the element C ve Element D.
+        WebElement titleC = driver.findElement(By.xpath("//li[@name='C']"));
+        WebElement titleD = driver.findElement(By.xpath("//li[@name='D']"));
+
+        // C elementini D elementinin uzerinde bekletin
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(titleC).moveToElement(titleD).perform();
+
+        driver.close();
+
     }
 
 
