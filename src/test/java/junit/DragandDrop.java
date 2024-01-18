@@ -44,4 +44,38 @@ public class DragandDrop extends TestBase {
         Assert.assertEquals(expectedDrophereTExt,actualDropHereTExt);
 
     }
+    @Test
+    public void test02(){
+        String url ="http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html";
+        driver.get(url);
+        WebElement oslo = driver.findElement(By.id("box1"));
+        WebElement stockholm = driver.findElement(By.id("box2"));
+        WebElement washington = driver.findElement(By.id("box3"));
+        WebElement copenhagen = driver.findElement(By.id("box4"));
+        WebElement seoul= driver.findElement(By.id("box5"));
+        WebElement rome = driver.findElement(By.id("box6"));
+        WebElement madrid = driver.findElement(By.id("box7"));
+
+        WebElement italyBoxElement= driver.findElement(By.id("box106"));
+        WebElement spainBoxElement= driver.findElement(By.id("box107"));
+        WebElement norwayBoxElement= driver.findElement(By.id("box101"));
+        WebElement denmarkBoxElement= driver.findElement(By.id("box104"));
+        WebElement southkoreaBoxElement= driver.findElement(By.id("box105"));
+        WebElement swedeenBoxElement= driver.findElement(By.id("box102"));
+        WebElement usaBoxElement= driver.findElement(By.id("box103"));
+
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(oslo,norwayBoxElement).perform();
+        actions.dragAndDrop(stockholm,swedeenBoxElement).perform();
+        actions.dragAndDrop(washington,usaBoxElement).perform();
+        actions.dragAndDrop(copenhagen,denmarkBoxElement).perform();
+        actions.dragAndDrop(seoul,southkoreaBoxElement).perform();
+        actions.dragAndDrop(rome,italyBoxElement).perform();
+        actions.dragAndDrop(madrid,spainBoxElement).perform();
+
+
+
+
+
+    }
 }
