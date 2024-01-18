@@ -65,17 +65,23 @@ public class DragandDrop extends TestBase {
         WebElement usaBoxElement= driver.findElement(By.id("box103"));
 
         Actions actions = new Actions(driver);
-        actions.dragAndDrop(oslo,norwayBoxElement).perform();
+        actions.clickAndHold(oslo).moveToElement(norwayBoxElement).release().build().perform();
+       // actions.dragAndDrop(oslo,norwayBoxElement).perform();
         actions.dragAndDrop(stockholm,swedeenBoxElement).perform();
         actions.dragAndDrop(washington,usaBoxElement).perform();
         actions.dragAndDrop(copenhagen,denmarkBoxElement).perform();
         actions.dragAndDrop(seoul,southkoreaBoxElement).perform();
         actions.dragAndDrop(rome,italyBoxElement).perform();
         actions.dragAndDrop(madrid,spainBoxElement).perform();
+    }
+    @Test
+    public void test03(){
+        driver.get("https://rangeslider.js.org/");
+        WebElement slider = driver.findElement(By.xpath("//*[@class='rangeslider__handle']"));
 
-
-
-
-
+        Actions actions= new Actions(driver);
+        actions.clickAndHold(slider).moveToElement(slider,100,0).release().perform();
+        actions.clickAndHold(slider).moveToElement(slider,-300,0).release().perform();
+        actions.dragAndDropBy(slider, -40,0).perform();
     }
 }
