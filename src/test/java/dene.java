@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import junit.utilities.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -46,6 +47,43 @@ public class dene extends TestBase {
 
         driver.findElement(By.id("inlineRadio2")).click();
         actions.sendKeys(Keys.TAB);
+
+
+    }
+    @Test
+    public void test03(){
+        driver.get("https://www.facebook.com/");
+        driver.findElement(By.xpath("//*[@*='cookie-policy-manage-dialog-accept-button']")).click();
+    driver.findElement(By.xpath("//*[@*='open-registration-form-button']")).click();
+
+    driver.findElement(By.xpath("//*[@name='firstname']")).click();
+    Actions actions =new Actions(driver);
+        Faker faker= new Faker();
+    actions.sendKeys(faker.name().firstName())
+            .sendKeys(Keys.TAB)
+            .sendKeys(faker.name().lastName())
+            .sendKeys(Keys.TAB)
+            .sendKeys(faker.internet().password())
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys("apr")
+            .sendKeys(Keys.TAB)
+            .sendKeys("09")
+            .sendKeys(Keys.TAB)
+            .sendKeys("1990")
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.ARROW_RIGHT)
+            .sendKeys(Keys.ENTER)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.TAB)
+            .sendKeys(Keys.ENTER).perform();
+
+
 
 
     }
